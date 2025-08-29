@@ -5,12 +5,172 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>jaynautic</title>
+    <link rel="icon" type="image/x-icon" href="content/spiral-logo.png">
+    <style>
+      body {
+        display: flex;
+        flex-direction: row;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+      }
+      .sidebar {
+        display: flex;
+        width: 300px;
+        height: 95vh;
+        padding-top: 100px;
+        position: fixed;
+        /* border: solid 1px red; */
+      }
+      .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        gap: 24px;
+        /* border: solid 1px green; */
+      }
+      .title {
+        font-size: 24px;
+        font-weight: 500;
+        padding-left: 40px;
+        cursor: pointer;
+      }
+      .sidebar-buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        /* border: solid 1px blue; */
+      }
+      .tag-button {
+        justify-content: center;
+        /* height: 32px; */
+        margin: 0px;
+        padding-left: 40px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        /* border: solid 1px purple; */
+      }
+      .tag-button:hover {
+        cursor: pointer;
+        background-color: lightgray;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+      .main-content {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+        height: fit-content;
+        gap: 1px;
+        margin-left: 300px;
+        padding-left: 20px;
+        padding-right: 40px;
+        padding-top: 64px;
+        padding-bottom: 20px;
+      }
+      .content-item {
+        width: 100%;
+        height: 480px;
+        background-color: lightgray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+      .content-item img {
+          object-fit: cover;
+          /* flex-shrink: 0; */
+          min-width: 100%;
+          min-height: 100%
+      }
+      .content-item:hover {
+          cursor: pointer;
+          filter: brightness(70%);
+          -webkit-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          -ms-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+      }
+    </style>
   </head>
   <body>
-    <h1>jaynautic's website</h1>
-    <h2>always be creating</h2>
-    <h3><a href="https://www.youtube.com/@Jaynautic">youtube</a></h3>
-    <h3><a href="https://www.instagram.com/jaynautic">instagram</a></h3>
-    <h3><a href="https://x.com/jaynautic">twitter</a></h3>
+    <div class="sidebar">
+      <div class="sidebar-content">
+        <div class="title">jaynautic</div>
+        <!-- <div class="sidebar-buttons">
+          <div class="tag-button"><a href="https://www.youtube.com/@Jaynautic">youtube</a></div>
+          <div class="tag-button"><a href="https://www.instagram.com/jaynautic">instagram</a></div>
+          <div class="tag-button"><a href="https://x.com/jaynautic">twitter</a></div>
+        </div> -->
+        <div class="sidebar-buttons">
+          <div class="tag-button" onclick="filter('sketches')">sketches</div>
+          <div class="tag-button" onclick="filter('notes')">notes</div>
+          <div class="tag-button" onclick="filter('ideas')">ideas</div>
+          <div class="tag-button" onclick="filter('projects')">projects</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="content-item note">1</div>
+      <div class="content-item sketch"><img src="/content/mungy.webp" alt=""/></div>
+      <div class="content-item idea">3</div>
+      <div class="content-item note">4</div>
+      <div class="content-item sketch">5</div>
+      <div class="content-item idea">6</div>
+    </div>
+
+  <script>
+      function filter(filterType) {
+        var sketches = document.getElementsByClassName('sketch');
+        var notes = document.getElementsByClassName('note');
+        var ideas = document.getElementsByClassName('idea');
+        var projects = document.getElementsByClassName('project');
+
+        switch(filterType) {
+          case 'sketches':
+            toggleVisibilityOn(sketches);
+            toggleVisibilityOff(notes);
+            toggleVisibilityOff(ideas);
+            toggleVisibilityOff(projects);
+            break;
+          case 'notes':
+            toggleVisibilityOff(sketches);
+            toggleVisibilityOn(notes);
+            toggleVisibilityOff(ideas);
+            toggleVisibilityOff(projects);
+            break;
+          case 'ideas':
+            toggleVisibilityOff(sketches);
+            toggleVisibilityOff(notes);
+            toggleVisibilityOn(ideas);
+            toggleVisibilityOff(projects);
+            break;
+          case 'projects':
+            toggleVisibilityOff(sketches);
+            toggleVisibilityOff(notes);
+            toggleVisibilityOff(ideas);
+            toggleVisibilityOn(projects);
+            break;
+          default:
+            // code block
+        }
+      };
+
+      function toggleVisibilityOff(classType) {
+        for(i = 0; i < classType.length; i++) {
+              classType[i].style.display = 'none';
+            }
+      }
+
+      function toggleVisibilityOn(classType) {
+        for(i = 0; i < classType.length; i++) {
+              classType[i].style.display = 'flex';
+            }
+      }
+  </script>
   </body>
 </html>
